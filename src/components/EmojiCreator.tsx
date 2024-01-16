@@ -260,7 +260,7 @@ const EmojiCreator: FC = () => {
                     >
                         {UsedIconForEmoji ? (
                             // Ignore the linting error it works...
-                            <SelectedIcon key="selected-icon" size="510px" DynamicIcon={UsedIconForEmoji} />
+                            <SelectedIcon key="selected-icon" size="500px" DynamicIcon={UsedIconForEmoji} />
                         ) : (
                             <span className="text-center text-red-600">Select Icon</span>
                         )}
