@@ -1,0 +1,58 @@
+{
+    "ignore": [
+        ".*",
+        "*.svg",
+        "*.json",
+        "*.txt",
+        "*.md",
+        "*.yml",
+        "*.yaml",
+        "**/.*",
+        "**/*.svg",
+        "**/*.json",
+        "**/*.txt",
+        "**/*.md",
+        "**/*.yml",
+        "**/*.yaml",
+        "Dockerfile"
+    ],
+    "license": "HEADER.txt",
+    "licenseFormats": {
+        "js": {
+            "prepend": "/**",
+            "append": " */\n",
+            "eachLine": {
+                "prepend": " * "
+            }
+        },
+        "ts": {
+            "prepend": "/**",
+            "append": " */\n",
+            "eachLine": {
+                "prepend": " * "
+            }
+        },
+        "tsx": {
+            "prepend": "/**",
+            "append": " */\n",
+            "eachLine": {
+                "prepend": " * "
+            }
+        },
+        "css": {
+            "prepend": "/**",
+            "append": " */\n",
+            "eachLine": {
+                "prepend": " * "
+            }
+        },
+        "html": {
+            "prepend": "<!--",
+            "append": " -->\n",
+            "eachLine": {
+                "prepend": " -- "
+            }
+        }
+    },
+    "trailingWhitespace": "TRIM"
+}

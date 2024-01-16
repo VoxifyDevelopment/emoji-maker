@@ -1,0 +1,94 @@
+/**
+ * Copyright (c) 2023 - present | sanguine6660 <sanguine6660@gmail.com>
+ * Copyright (c) 2023 - present | voxify.dev <contact@voxify.dev>
+ * Copyright (c) 2023 - present | voxify.dev team and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap'); /*font-family: 'Inter', sans-serif;*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --main-font: 'Inter', sans-serif;
+    --accent-color: #850505;
+    --main-color: #850505;
+
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --description-color: #d2d0d0;
+
+    --track-background: #222222;
+    --scroll-bar: #850505;
+    --scroll-bar-hover: #850505a2;
+
+    --s1-background: #24272b;
+    --s2-background: #2d3034;
+
+    --nav-height: 70px;
+}
+
+body {
+    font-family: var(--main-font);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*Scrollbar*/
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--track-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scroll-bar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scroll-bar-hover);
+}
+
+.spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--main-color);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-block; /* Set display to inline-block */
+    margin-left: 5px; /* Add some spacing between the text and the spinner */
+    vertical-align: middle; /* Align vertically with the text */
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
