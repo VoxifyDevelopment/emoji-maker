@@ -5,6 +5,8 @@ import { toBlob } from 'html-to-image';
 
 import { toast } from 'react-toastify';
 
+import { HexAlphaColorPicker } from 'react-colorful';
+
 import * as ai from 'react-icons/ai';
 import * as bi from 'react-icons/bi';
 import * as bs from 'react-icons/bs';
@@ -82,8 +84,11 @@ const EmojiCreator: FC = () => {
     const [UsedIconForEmoji, setUsedIconForEmoji] = React.useState<DynamicIconComponent | null>(null);
 
     const [backgroundBorder, setBackgroundBorder] = React.useState<string>('20');
-    const [backgroundColor, setBackgroundColor] = React.useState<string>('#111111');
-    const [iconColor, setIconColor] = React.useState<string>('#850505');
+    const [backgroundColor, setBackgroundColor] = React.useState<string>('#111111FF');
+    const [iconColor, setIconColor] = React.useState<string>('#850505FF');
+
+    const [detailsBackgroundOpen, setDetailsBackgroundOpen] = React.useState<boolean>(false);
+    const [detailsIconOpen, setDetailsIconOpen] = React.useState<boolean>(false);
 
     const drawResult = () => {
         const value = inputValue.toLowerCase();
@@ -117,16 +122,8 @@ const EmojiCreator: FC = () => {
         setInputValue(e.target.value);
     };
 
-    const handleBackgroundChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setBackgroundColor(e.target.value);
-    };
-
     const handleBackgroundBorderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setBackgroundBorder(e.target.value);
-    };
-
-    const handleIconColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIconColor(e.target.value);
     };
 
     const handleSearchSubmit = (e: React.FormEvent) => {
@@ -266,7 +263,7 @@ const EmojiCreator: FC = () => {
                         )}
                     </div>
                 </div>
-                <div className="h-[260px] w-[260px] flex-col items-center justify-center border border-white bg-black">
+                <div className="grid-background flex h-[270px] w-[270px] flex-row items-center justify-center border border-gray-300">
                     <div
                         className="flex h-[256px] w-[256px] flex-col items-center justify-center"
                         style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + '%' }}
@@ -286,22 +283,15 @@ const EmojiCreator: FC = () => {
                 >
                     Create and Download Emoji
                 </button>
-                <label htmlFor="pick-background" className="text-silver block text-sm font-medium">
-                    Background Color
-                </label>
-                <input
-                    id="pick-background"
-                    className="mt-1 w-full rounded-md  text-[var(--white-color)]"
-                    type="color"
-                    onChange={handleBackgroundChange}
-                    value={backgroundColor}
-                />
+
+                <hr className="my-2 h-1 w-full border-0 bg-gray-400" />
+
                 <label htmlFor="pick-radius" className="text-silver block text-sm font-medium">
                     Background Radius {backgroundBorder}%
                 </label>
                 <input
                     id="pick-radius"
-                    className="mt-1 w-full rounded-md  text-[var(--white-color)]"
+                    className="mt-1 w-full rounded-md text-[var(--white-color)]"
                     type="range"
                     min="0"
                     step="0.5"
@@ -309,16 +299,55 @@ const EmojiCreator: FC = () => {
                     onChange={handleBackgroundBorderChange}
                     value={backgroundBorder}
                 />
-                <label htmlFor="pick-icon" className="text-silver block text-sm font-medium">
-                    Icon Color
-                </label>
-                <input
-                    id="pick-icon"
-                    className="mt-1 w-full rounded-md  text-[var(--white-color)]"
-                    type="color"
-                    onChange={handleIconColorChange}
-                    value={iconColor}
-                />
+
+                <hr className="my-2 h-1 w-full border-0 bg-gray-400" />
+
+                <details
+                    className="flex w-full transform-gpu flex-col items-center justify-center rounded-md border border-gray-400"
+                    open={detailsBackgroundOpen}
+                >
+                    <summary
+                        className="m-3 flex flex-row items-center justify-center"
+                        onClick={() => {
+                            setDetailsBackgroundOpen(!detailsBackgroundOpen);
+                        }}
+                    >
+                        <label htmlFor="pick-background" className="text-silver flex flex-row items-center justify-center text-sm font-medium">
+                            Background Color <div className="ml-4" style={{ width: '50px', height: '20px', backgroundColor }}></div>
+                        </label>
+                    </summary>
+                    <div className="mt-3 flex w-full flex-row items-center justify-center">
+                        <HexAlphaColorPicker
+                            id="pick-background"
+                            className="mt-1 w-full rounded-md text-[var(--white-color)]"
+                            onChange={setBackgroundColor}
+                            color={backgroundColor}
+                        />
+                    </div>
+                </details>
+
+                <hr className="my-2 h-1 w-full border-0 bg-gray-400" />
+
+                <details className="flex w-full transform-gpu flex-col items-center justify-center rounded-md border border-gray-400" open={detailsIconOpen}>
+                    <summary
+                        className="m-3 flex flex-row items-center justify-center"
+                        onClick={() => {
+                            setDetailsIconOpen(!detailsIconOpen);
+                        }}
+                    >
+                        <label htmlFor="pick-icon" className="text-silver flex flex-row items-center justify-center text-sm font-medium">
+                            Icon Color <div className="ml-4" style={{ width: '50px', height: '20px', backgroundColor: iconColor }}></div>
+                        </label>
+                    </summary>
+                    <div className="mt-3 flex w-full flex-row items-center justify-center">
+                        <HexAlphaColorPicker
+                            id="pick-icon"
+                            className="mt-1 w-full rounded-md text-[var(--white-color)]"
+                            onChange={setIconColor}
+                            color={iconColor}
+                        />
+                    </div>
+                </details>
             </div>
         </div>
     );
