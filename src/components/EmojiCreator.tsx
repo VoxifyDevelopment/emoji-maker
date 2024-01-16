@@ -184,6 +184,7 @@ const EmojiCreator: FC = () => {
                         // empty
                     }
                     downloadButton.disabled = false;
+                    toast.success('Successfully created a new Emoji! GG :)');
                 }, 500);
             })
             .catch(console.error);
@@ -252,7 +253,7 @@ const EmojiCreator: FC = () => {
                 <div className="absolute top-[-1500px]">
                     <div
                         id="export"
-                        className="h-[512px] w-[512px] flex-col items-center justify-center"
+                        className="flex h-[512px] w-[512px] flex-col items-center justify-center"
                         style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + '%' }}
                     >
                         {UsedIconForEmoji ? (
