@@ -256,7 +256,7 @@ const EmojiCreator: FC = () => {
                     <div
                         id="export"
                         className="h-[512px] w-[512px] flex-col items-center justify-center"
-                        style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + 'px' }}
+                        style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + '%' }}
                     >
                         {UsedIconForEmoji ? (
                             // Ignore the linting error it works...
@@ -269,7 +269,7 @@ const EmojiCreator: FC = () => {
                 <div className="h-[260px] w-[260px] flex-col items-center justify-center border border-white bg-black">
                     <div
                         className="flex h-[256px] w-[256px] flex-col items-center justify-center"
-                        style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + 'px' }}
+                        style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + '%' }}
                     >
                         {UsedIconForEmoji ? (
                             // Ignore the linting error it works...
@@ -297,7 +297,7 @@ const EmojiCreator: FC = () => {
                     value={backgroundColor}
                 />
                 <label htmlFor="pick-radius" className="text-silver block text-sm font-medium">
-                    Background Radius {backgroundBorder}px
+                    Background Radius {backgroundBorder}%
                 </label>
                 <input
                     id="pick-radius"
