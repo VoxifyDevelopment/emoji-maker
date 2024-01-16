@@ -25,7 +25,7 @@
 
 ---
 
-Create Emojis for you Discord server with ease.
+Create Emojis for your Discord server with ease.
 
 ---
 

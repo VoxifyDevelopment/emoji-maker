@@ -56,7 +56,7 @@ export default function Header() {
                 </div>
                 <div className="flex h-full flex-col items-center justify-evenly">
                     <h1 className="m-4 text-2xl font-bold text-[var(--main-color)]">Voxify Emoji Maker</h1>
-                    <p className="text-md m-4 font-semibold text-[var(--description-color)]">Create Emojis for you Discord server with ease</p>
+                    <p className="text-md m-4 font-semibold text-[var(--description-color)]">Create Emojis for your Discord server with ease</p>
                     <hr className="my-2 h-1 w-full border-0 bg-gray-400" />
                     <Link
                         className="group relative mb-2 me-2 mt-4 inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 p-0.5 text-sm font-medium text-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-cyan-200 group-hover:from-cyan-500 group-hover:to-blue-500 dark:text-white dark:focus:ring-cyan-800"

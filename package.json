@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.1",
     "type": "module",
-    "description": "Create Emojis for you Discord server with ease",
+    "description": "Create Emojis for your Discord server with ease",
     "scripts": {
         "dev": "vite",
         "dev:ex": "vite --host",
