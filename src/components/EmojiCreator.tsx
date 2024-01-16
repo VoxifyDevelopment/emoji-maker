@@ -81,6 +81,10 @@ const EmojiCreator: FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [UsedIconForEmoji, setUsedIconForEmoji] = React.useState<DynamicIconComponent | null>(null);
 
+    const [backgroundBorder, setBackgroundBorder] = React.useState<string>('20');
+    const [backgroundColor, setBackgroundColor] = React.useState<string>('#111111');
+    const [iconColor, setIconColor] = React.useState<string>('#850505');
+
     const drawResult = () => {
         const value = inputValue.toLowerCase();
 
@@ -111,6 +115,18 @@ const EmojiCreator: FC = () => {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
+    };
+
+    const handleBackgroundChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setBackgroundColor(e.target.value);
+    };
+
+    const handleBackgroundBorderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setBackgroundBorder(e.target.value);
+    };
+
+    const handleIconColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIconColor(e.target.value);
     };
 
     const handleSearchSubmit = (e: React.FormEvent) => {
@@ -237,7 +253,11 @@ const EmojiCreator: FC = () => {
 
             <div className="mt-8 flex flex-col items-center justify-center">
                 <div className="absolute top-[-1500px]">
-                    <div id="export" className="export h-[512px] w-[512px] flex-col items-center justify-center">
+                    <div
+                        id="export"
+                        className="h-[512px] w-[512px] flex-col items-center justify-center"
+                        style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + 'px' }}
+                    >
                         {UsedIconForEmoji ? (
                             // Ignore the linting error it works...
                             <SelectedIcon key="selected-icon" size="510px" DynamicIcon={UsedIconForEmoji} />
@@ -246,13 +266,18 @@ const EmojiCreator: FC = () => {
                         )}
                     </div>
                 </div>
-                <div className="preview h-[260px] w-[260px] flex-col items-center justify-center border-white bg-black p-[2px]">
-                    {UsedIconForEmoji ? (
-                        // Ignore the linting error it works...
-                        <SelectedIcon key="selected-icon" size="250px" DynamicIcon={UsedIconForEmoji} />
-                    ) : (
-                        <span className="text-center text-red-600">Select Icon</span>
-                    )}
+                <div className="h-[260px] w-[260px] flex-col items-center justify-center border border-white bg-black">
+                    <div
+                        className="flex h-[256px] w-[256px] flex-col items-center justify-center"
+                        style={{ backgroundColor, color: iconColor, borderRadius: backgroundBorder + 'px' }}
+                    >
+                        {UsedIconForEmoji ? (
+                            // Ignore the linting error it works...
+                            <SelectedIcon key="selected-icon" size="250px" DynamicIcon={UsedIconForEmoji} />
+                        ) : (
+                            <span className="text-center text-red-600">Select Icon</span>
+                        )}
+                    </div>
                 </div>
                 <button
                     onClick={handleDownload}
@@ -261,23 +286,38 @@ const EmojiCreator: FC = () => {
                 >
                     Create and Download Emoji
                 </button>
+                <label htmlFor="pick-background" className="text-silver block text-sm font-medium">
+                    Background Color
+                </label>
                 <input
-                    type="text"
-                    id="fileNameInput"
-                    value="TODO fileNameInput"
-                    className="mt-1 w-full rounded-md border border-gray-300 bg-gray-900 p-2 text-[var(--white-color)]"
+                    id="pick-background"
+                    className="mt-1 w-full rounded-md  text-[var(--white-color)]"
+                    type="color"
+                    onChange={handleBackgroundChange}
+                    value={backgroundColor}
                 />
+                <label htmlFor="pick-radius" className="text-silver block text-sm font-medium">
+                    Background Radius {backgroundBorder}px
+                </label>
                 <input
-                    type="text"
-                    id="backgroundInput"
-                    value="TODO backgroundInput"
-                    className="mt-1 w-full rounded-md border border-gray-300 bg-gray-900 p-2 text-[var(--white-color)]"
+                    id="pick-radius"
+                    className="mt-1 w-full rounded-md  text-[var(--white-color)]"
+                    type="range"
+                    min="0"
+                    step="0.5"
+                    max="50"
+                    onChange={handleBackgroundBorderChange}
+                    value={backgroundBorder}
                 />
+                <label htmlFor="pick-icon" className="text-silver block text-sm font-medium">
+                    Icon Color
+                </label>
                 <input
-                    type="text"
-                    id="iconColorInput"
-                    value="TODO iconColorInput"
-                    className="mt-1 w-full rounded-md border border-gray-300 bg-gray-900 p-2 text-[var(--white-color)]"
+                    id="pick-icon"
+                    className="mt-1 w-full rounded-md  text-[var(--white-color)]"
+                    type="color"
+                    onChange={handleIconColorChange}
+                    value={iconColor}
                 />
             </div>
         </div>
