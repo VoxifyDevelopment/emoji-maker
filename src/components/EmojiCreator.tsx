@@ -3,6 +3,8 @@ import { IconContext, IconBaseProps } from 'react-icons';
 
 import { toBlob } from 'html-to-image';
 
+import { toast } from 'react-toastify';
+
 import * as ai from 'react-icons/ai';
 import * as bi from 'react-icons/bi';
 import * as bs from 'react-icons/bs';
@@ -118,17 +120,17 @@ const EmojiCreator: FC = () => {
 
     const handleDownload = () => {
         if (!UsedIconForEmoji) {
-            alert('Select an icon first. (TODO add custom image upload as custom icon)');
+            toast.warn('Please select an icon first.');
             return;
         }
         const renderElement = document.getElementById('export');
         if (!renderElement) {
-            alert('not implemented yet');
+            toast.error('Something went wrong while processing the render element.');
             return;
         }
         const downloadButton: HTMLButtonElement | null = document.getElementById('download-emoji') as HTMLButtonElement | null;
         if (!downloadButton) {
-            alert('not implemented yet');
+            toast.error('Something went wrong while processing the download button click.');
             return;
         }
 
@@ -143,7 +145,7 @@ const EmojiCreator: FC = () => {
         toBlob(renderElement)
             .then(function (createdImageBlob) {
                 if (!createdImageBlob) {
-                    alert('error ocurred');
+                    toast.error('An error occurred while creating the image.');
                     return;
                 }
                 // console.log(createdImageBlob);
