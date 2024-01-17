@@ -24,7 +24,7 @@ import Content from '../components/create/Content';
 
 export default function Create() {
     useEffect(() => {
-        document.title = 'Voxify Emoji Maker | Create Emoji';
+        document.title = '𝗩oxify 𝗘moji 𝗠aker | Create Emoji';
     }, []);
 
     return (

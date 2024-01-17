@@ -47,16 +47,16 @@ export default function Navbar() {
                             className="flex flex-shrink-0 flex-row items-center justify-around p-2 font-bold text-[var(--white-color)] hover:text-[var(--main-color)]"
                         >
                             <img className="h-8 w-8" src={Logo} alt="Logo" />
-                            <p className="ml-2 font-extrabold tracking-tight">Voxify Emoji Maker</p>
+                            <p className="ml-2 font-extrabold tracking-tight">𝗩oxify 𝗘moji 𝗠aker</p>
                         </Link>
                         <div className="hidden md:block">
                             <div ref={createRef()} className="ml-10 flex items-baseline space-x-4">
                                 <Link to="/" className={currentPath === '/' ? style_link_active : style_link}>
-                                    Home
+                                    𝗛𝗼𝗺𝗲
                                 </Link>
 
                                 <Link to="/create" className={currentPath === '/create' ? style_dd_link_active : style_dd_link}>
-                                    ➕ Emoji
+                                    ➕ 🅴🅼🅾🅹🅸
                                 </Link>
 
                                 <Link to="https://wiki.voxify.dev" className={style_link}>
@@ -115,10 +115,10 @@ export default function Navbar() {
                     <div className="md:hidden" id="mobile-menu">
                         <div ref={createRef()} className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                             <Link to="/" className={currentPath === '/' ? style_dd_link_active : style_dd_link}>
-                                Home
+                                𝗛𝗼𝗺𝗲
                             </Link>
                             <Link to="/create" className={currentPath === '/create' ? style_dd_link_active : style_dd_link}>
-                                ➕ Emoji
+                                ➕ 🅴🅼🅾🅹🅸
                             </Link>
                             <Link to="https://wiki.voxify.dev" className={style_dd_link}>
                                 Wiki
