@@ -17,8 +17,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect, useState, ChangeEvent, FormEvent } from 'react';
 import { IconContext, IconBaseProps } from 'react-icons';
+
+import useLocalStorage from '../hooks/useLocalStorage';
 
 import { toBlob } from 'html-to-image';
 
@@ -98,19 +100,18 @@ const icons: Record<string, Record<string, DynamicIconComponent>> = {
 };
 
 const EmojiCreator: FC = () => {
-    const [inputValue, setInputValue] = React.useState<string>('emoji');
-    const [cachedResults, setCachedResults] = React.useState<Record<string, Array<DynamicIconComponent>>>({});
-    const [filteredIcons, setFilteredIcons] = React.useState<Array<DynamicIconComponent>>([]);
+    const [inputValue, setInputValue] = useLocalStorage<string>('search', 'emoji');
+    const [cachedResults, setCachedResults] = useState<Record<string, Array<DynamicIconComponent>>>({});
+    const [filteredIcons, setFilteredIcons] = useState<Array<DynamicIconComponent>>([]);
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [UsedIconForEmoji, setUsedIconForEmoji] = React.useState<DynamicIconComponent | null>(null);
+    const [UsedIconForEmoji, setUsedIconForEmoji] = useState<DynamicIconComponent | null>(null);
 
-    const [backgroundBorder, setBackgroundBorder] = React.useState<string>('20');
-    const [backgroundColor, setBackgroundColor] = React.useState<string>('#111111FF');
-    const [iconColor, setIconColor] = React.useState<string>('#850505FF');
+    const [backgroundBorder, setBackgroundBorder] = useLocalStorage<string>('background-border-radius', '20');
+    const [backgroundColor, setBackgroundColor] = useLocalStorage<string>('background-color', '#111111FF');
+    const [iconColor, setIconColor] = useLocalStorage<string>('icon-color', '#850505FF');
 
-    const [detailsBackgroundOpen, setDetailsBackgroundOpen] = React.useState<boolean>(false);
-    const [detailsIconOpen, setDetailsIconOpen] = React.useState<boolean>(false);
+    const [detailsBackgroundOpen, setDetailsBackgroundOpen] = useState<boolean>(false);
+    const [detailsIconOpen, setDetailsIconOpen] = useState<boolean>(false);
 
     const drawResult = () => {
         const value = inputValue.toLowerCase();
@@ -140,15 +141,15 @@ const EmojiCreator: FC = () => {
         setFilteredIcons(iconsMatchingSearch);
     };
 
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     };
 
-    const handleBackgroundBorderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleBackgroundBorderChange = (e: ChangeEvent<HTMLInputElement>) => {
         setBackgroundBorder(e.target.value);
     };
 
-    const handleSearchSubmit = (e: React.FormEvent) => {
+    const handleSearchSubmit = (e: FormEvent) => {
         e.preventDefault();
         drawResult();
     };
@@ -213,7 +214,7 @@ const EmojiCreator: FC = () => {
     };
 
     // Invalidate cache after 1 min
-    React.useEffect(() => {
+    useEffect(() => {
         const cacheInvalidationTimer = setTimeout(() => {
             setCachedResults({});
         }, 120000);
@@ -223,9 +224,9 @@ const EmojiCreator: FC = () => {
         };
     }, [cachedResults]);
 
-    React.useEffect(drawResult);
+    useEffect(drawResult);
 
-    // React.useEffect(() => {
+    // useEffect(() => {
     //     console.log(typeof UsedIconForEmoji);
     //     console.log(UsedIconForEmoji);
     // }, [UsedIconForEmoji]);
@@ -332,6 +333,7 @@ const EmojiCreator: FC = () => {
                 <hr className="my-2 h-1 w-full border-0 bg-gray-400" />
 
                 <details
+                    title={backgroundColor}
                     className="flex w-full transform-gpu flex-col items-center justify-center rounded-md border border-gray-400"
                     open={detailsBackgroundOpen}
                 >
@@ -357,7 +359,11 @@ const EmojiCreator: FC = () => {
 
                 <hr className="my-2 h-1 w-full border-0 bg-gray-400" />
 
-                <details className="flex w-full transform-gpu flex-col items-center justify-center rounded-md border border-gray-400" open={detailsIconOpen}>
+                <details
+                    title={iconColor}
+                    className="flex w-full transform-gpu flex-col items-center justify-center rounded-md border border-gray-400"
+                    open={detailsIconOpen}
+                >
                     <summary
                         className="m-3 flex flex-row items-center justify-center"
                         onClick={() => {
