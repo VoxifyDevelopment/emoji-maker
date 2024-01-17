@@ -22,15 +22,18 @@ import { useLocation } from 'react-router-dom';
 import { Transition } from '@headlessui/react';
 import { Link } from 'react-router-dom';
 
+import { FaHome, FaDiscord } from 'react-icons/fa';
+
 import Logo from '../assets/logo-nb.svg';
 
 const style_link_active =
-    'relative hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium after:absolute after:h-[3px] after:w-[70%] after:bottom-[1px] after:left-[0] after:bg-[var(--main-color)]';
-const style_link = 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium';
+    'relative flex flex-row items-center justify-center  hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium after:absolute after:h-[3px] after:w-[70%] after:bottom-[1px] after:left-[0] after:bg-[var(--main-color)]';
+const style_link = ' flex flex-row items-center justify-center text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium';
 
 const style_dd_link_active =
-    'relative  hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium after:absolute after:h-[3px] after:w-[70%] after:bottom-[1px] after:left-[0] after:bg-[var(--main-color)]';
-const style_dd_link = 'text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium';
+    'relative flex flex-row items-center justify-center   hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium after:absolute after:h-[3px] after:w-[70%] after:bottom-[1px] after:left-[0] after:bg-[var(--main-color)]';
+const style_dd_link =
+    ' flex flex-row items-center justify-center text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -52,14 +55,18 @@ export default function Navbar() {
                         <div className="hidden md:block">
                             <div ref={createRef()} className="ml-10 flex items-baseline space-x-4">
                                 <Link to="/" className={currentPath === '/' ? style_link_active : style_link}>
-                                    𝗛𝗼𝗺𝗲
+                                    <FaHome className="mr-1" size="1rem" /> 𝗛𝗼𝗺𝗲
                                 </Link>
 
                                 <Link to="/create" className={currentPath === '/create' ? style_dd_link_active : style_dd_link}>
                                     ➕ 🅴🅼🅾🅹🅸
                                 </Link>
 
-                                <Link to="https://wiki.voxify.dev" className={style_link}>
+                                <Link target="_blank" to="https://discord.voxifybot.com" className={style_link}>
+                                    Join <FaDiscord className="ml-1" size="1rem" />
+                                </Link>
+
+                                <Link target="_blank" to="https://wiki.voxify.dev" className={style_link}>
                                     Wiki
                                 </Link>
                             </div>
@@ -115,12 +122,15 @@ export default function Navbar() {
                     <div className="md:hidden" id="mobile-menu">
                         <div ref={createRef()} className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
                             <Link to="/" className={currentPath === '/' ? style_dd_link_active : style_dd_link}>
-                                𝗛𝗼𝗺𝗲
+                                <FaHome className="mr-1" size="1rem" /> 𝗛𝗼𝗺𝗲
                             </Link>
                             <Link to="/create" className={currentPath === '/create' ? style_dd_link_active : style_dd_link}>
                                 ➕ 🅴🅼🅾🅹🅸
                             </Link>
-                            <Link to="https://wiki.voxify.dev" className={style_dd_link}>
+                            <Link target="_blank" to="https://discord.voxifybot.com" className={style_dd_link}>
+                                Join <FaDiscord className="ml-1" size="1rem" />
+                            </Link>
+                            <Link target="_blank" to="https://wiki.voxify.dev" className={style_dd_link}>
                                 Wiki
                             </Link>
                         </div>

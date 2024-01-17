@@ -73,7 +73,7 @@ export default function Header() {
                         to="/create"
                     >
                         <span className="relative rounded-md bg-gray-900 px-5 py-2.5 transition-all duration-75 ease-in group-hover:bg-opacity-0">
-                            ➕ Start Creating New Discord Emojis Now!
+                            ➕ Create 🅴🅼🅾🅹🅸
                         </span>
                     </Link>
                 </div>
