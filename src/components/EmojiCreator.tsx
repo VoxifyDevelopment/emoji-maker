@@ -1,3 +1,22 @@
+/**
+ * Copyright (c) 2023 - present | sanguine6660 <sanguine6660@gmail.com>
+ * Copyright (c) 2023 - present | voxify.dev <contact@voxify.dev>
+ * Copyright (c) 2023 - present | voxify.dev team and contributors
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import React, { FC, ReactNode } from 'react';
 import { IconContext, IconBaseProps } from 'react-icons';
 
@@ -38,6 +57,9 @@ import * as tfi from 'react-icons/tfi';
 import * as ti from 'react-icons/ti';
 import * as vsc from 'react-icons/vsc';
 import * as wi from 'react-icons/wi';
+import { Link } from 'react-router-dom';
+
+const iconLinkStyle = 'p-2 text-[var(--main-color)] hover:text-[var(--white-color)] flex flex-row items-center justify-center';
 
 type DynamicIconComponent = FC<IconBaseProps>;
 
@@ -76,7 +98,7 @@ const icons: Record<string, Record<string, DynamicIconComponent>> = {
 };
 
 const EmojiCreator: FC = () => {
-    const [inputValue, setInputValue] = React.useState<string>('github');
+    const [inputValue, setInputValue] = React.useState<string>('emoji');
     const [cachedResults, setCachedResults] = React.useState<Record<string, Array<DynamicIconComponent>>>({});
     const [filteredIcons, setFilteredIcons] = React.useState<Array<DynamicIconComponent>>([]);
 
@@ -102,7 +124,7 @@ const EmojiCreator: FC = () => {
 
         const iconsMatchingSearch: Array<DynamicIconComponent> = [];
 
-        if (value !== '' && value.length > 3) {
+        if (value !== '' && value.length >= 3) {
             for (const [library, libIcons] of Object.entries(icons)) {
                 for (const [icon, comp] of Object.entries(libIcons)) {
                     if (`${library}/${icon}`.toLowerCase().includes(value)) {
@@ -211,12 +233,18 @@ const EmojiCreator: FC = () => {
     // TODO custom image import
 
     return (
-        <div className="flex w-screen flex-row items-start justify-evenly">
+        <div className="flex w-screen flex-col-reverse items-center justify-evenly lg:flex-row lg:items-start">
             <div className="mt-8 flex max-w-[70vw] flex-col items-center justify-center">
                 <div className="relative flex flex-col items-center justify-center ">
                     <form onSubmit={handleSearchSubmit} className="max-w-md">
                         <label htmlFor="searchInput" className="text-silver block text-sm font-medium">
                             Search Icon: {'(TODO add custom image upload as custom icon)'}
+                            <h2 className="flex flex-row items-center justify-center">
+                                We are using{' '}
+                                <Link target="_blank" to="https://react-icons.github.io/react-icons/" className={iconLinkStyle}>
+                                    <fa.FaReact className="mr-1" size="2rem" /> React-Icons
+                                </Link>
+                            </h2>
                         </label>
                         <input
                             type="text"
@@ -230,7 +258,7 @@ const EmojiCreator: FC = () => {
                         <p className="mb-2 text-center text-xl font-semibold">Icon Preview</p>
                         <div className="justify-even flex flex-row items-center bg-gray-900 p-4">
                             {filteredIcons.length > 0 ? (
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                                     {filteredIcons.map((icon, index) => (
                                         <IconComponentWrapper
                                             key={index}

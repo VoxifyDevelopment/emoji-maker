@@ -18,7 +18,10 @@
  */
 
 import { useState, useEffect } from 'react';
+import { FaReact } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+
+const iconLinkStyle = 'p-2 text-[var(--main-color)] hover:text-[var(--white-color)] flex flex-row items-center justify-center';
 
 export default function Header() {
     const [emojiPaths, setEmojiPaths] = useState<string[]>([]);
@@ -44,17 +47,24 @@ export default function Header() {
     }, []);
 
     return (
-        <header className="mt-10 flex h-full flex-col items-center justify-center">
-            <section className="flex h-full w-screen flex-col items-center justify-evenly p-3  pt-8 md:flex-row">
+        <header className="my-10 flex h-full flex-col items-center justify-center shadow-lg shadow-[var(--main-color)]">
+            <section className="flex h-full w-screen flex-col-reverse items-center justify-evenly p-3  pt-8 md:flex-row">
                 <div className="flex h-full flex-col items-center justify-evenly rounded-md border border-[var(--main-color)] bg-gray-400 bg-opacity-10 bg-clip-padding backdrop-blur-sm backdrop-filter">
                     <h1 className="m-4 text-2xl font-bold text-[var(--main-color)]">Showcase</h1>
-                    <div className="grid grid-cols-6">
+                    <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8">
                         {emojiPaths.map((path, index) => (
                             <img key={index} src={path} alt={`emoji-${index}`} className="m-2 h-[50px] w-[50px]" />
                         ))}
                     </div>
+
+                    <h2 className="flex flex-row items-center justify-center">
+                        We are using{' '}
+                        <Link target="_blank" to="https://react-icons.github.io/react-icons/" className={iconLinkStyle}>
+                            <FaReact className="mr-1" size="2rem" /> React-Icons
+                        </Link>
+                    </h2>
                 </div>
-                <div className="flex h-full flex-col items-center justify-evenly">
+                <div className="flex h-full max-w-[300px] flex-col items-center justify-evenly">
                     <h1 className="m-4 text-2xl font-bold text-[var(--main-color)]">Voxify Emoji Maker</h1>
                     <p className="text-md m-4 font-semibold text-[var(--description-color)]">Create Emojis for your Discord server with ease</p>
                     <hr className="my-2 h-1 w-full border-0 bg-gray-400" />

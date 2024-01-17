@@ -19,13 +19,13 @@
 
 import { Link } from 'react-router-dom';
 import Logo from '../assets/logo-nb.svg';
-import { FaGithub, FaDiscord, FaRobot } from 'react-icons/fa';
+import { FaGithub, FaDiscord, FaRobot, FaReact } from 'react-icons/fa';
 
-const iconLinkSyle = 'p-2 text-[var(--main-color)] hover:text-[var(--white-color)]';
+const iconLinkStyle = 'p-2 text-[var(--main-color)] hover:text-[var(--white-color)] flex flex-row items-center justify-center';
 
 export default function Footer() {
     return (
-        <footer className="flex min-h-[120px] w-screen flex-row items-center justify-center bg-slate-950 p-3">
+        <footer className="mt-4 flex min-h-[120px] w-screen flex-row items-center justify-center border-t-2 border-t-[var(--main-color)] bg-slate-950 p-3">
             <div className="items-left flex min-w-[30vw] flex-col justify-start bg-slate-950 p-3">
                 <div className="flex flex-col items-center justify-start md:flex-row">
                     <Link to="/" className="flex flex-shrink-0 flex-row items-center p-2 font-bold text-[var(--white-color)] hover:text-[var(--main-color)]">
@@ -37,14 +37,17 @@ export default function Footer() {
                 <hr />
 
                 <div className="items-left mb-2 flex flex-row justify-start">
-                    <Link target="_blank" to="https://discord.voxify.dev" className={iconLinkSyle}>
+                    <Link target="_blank" to="https://discord.voxify.dev" className={iconLinkStyle}>
                         <FaDiscord className="mr-1" size="2rem" />
                     </Link>
-                    <Link target="_blank" to="https://github.com/VoxifyDevelopment/emoji-maker" className={iconLinkSyle}>
+                    <Link target="_blank" to="https://github.com/VoxifyDevelopment/emoji-maker" className={iconLinkStyle}>
                         <FaGithub className="mr-1" size="2rem" />
                     </Link>
-                    <Link target="_blank" to="https://voxifybot.com/" className={iconLinkSyle}>
+                    <Link target="_blank" to="https://voxifybot.com/" className={iconLinkStyle}>
                         <FaRobot className="mr-1" size="2rem" />
+                    </Link>
+                    <Link target="_blank" to="https://react-icons.github.io/react-icons/" className={iconLinkStyle}>
+                        <FaReact className="mr-1" size="2rem" />
                     </Link>
                 </div>
 
