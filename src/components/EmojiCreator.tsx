@@ -26,7 +26,7 @@ import { toBlob } from 'html-to-image';
 
 import { toast } from 'react-toastify';
 
-import { HexAlphaColorPicker } from 'react-colorful';
+import { HexAlphaColorPicker, HexColorInput } from 'react-colorful';
 
 import * as ai from 'react-icons/ai';
 import * as bi from 'react-icons/bi';
@@ -347,10 +347,18 @@ const EmojiCreator: FC = () => {
                             Background Color <div className="ml-4" style={{ width: '50px', height: '20px', backgroundColor }}></div>
                         </label>
                     </summary>
-                    <div className="mt-3 flex w-full flex-row items-center justify-center">
+                    <div className="mt-3 flex w-full flex-col items-center justify-center">
                         <HexAlphaColorPicker
                             id="pick-background"
                             className="mt-1 w-full rounded-md text-[var(--white-color)]"
+                            onChange={setBackgroundColor}
+                            color={backgroundColor}
+                        />
+                        <HexColorInput
+                            alpha
+                            prefixed
+                            id="input-background"
+                            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-900 p-2 text-[var(--white-color)]"
                             onChange={setBackgroundColor}
                             color={backgroundColor}
                         />
@@ -374,10 +382,18 @@ const EmojiCreator: FC = () => {
                             Icon Color <div className="ml-4" style={{ width: '50px', height: '20px', backgroundColor: iconColor }}></div>
                         </label>
                     </summary>
-                    <div className="mt-3 flex w-full flex-row items-center justify-center">
+                    <div className="mt-3 flex w-full flex-col items-center justify-center">
                         <HexAlphaColorPicker
                             id="pick-icon"
                             className="mt-1 w-full rounded-md text-[var(--white-color)]"
+                            onChange={setIconColor}
+                            color={iconColor}
+                        />
+                        <HexColorInput
+                            alpha
+                            prefixed
+                            id="input-icon"
+                            className="mt-1 w-full rounded-md border border-gray-300 bg-gray-900 p-2 text-[var(--white-color)]"
                             onChange={setIconColor}
                             color={iconColor}
                         />
